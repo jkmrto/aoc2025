@@ -73,24 +73,18 @@ pub fn part_2(filename: String) -> u64 {
     let (ranges, _selected) = load_data(filename);
     let mut count: u64 = 0;
 
-    println!("Ranges length {:?}", ranges);
-
     // Count all numbers between ranges
     // Doing a for loop over ranges
     for i in 0..ranges.len() {
-        println!("Range {} - {}", ranges[i].0, ranges[i].1);
         count += 1 + (ranges[i].1 - ranges[i].0) as u64;
     }
 
-    println!("Valid selected count {}", count);
     count
 }
 
 pub fn part_1(filename: String) -> u32 {
     let (mut ranges, mut selected) = load_data(filename);
 
-    // validate ranges
-    println!("Ranges length {}", ranges.len());
     for i in 0..ranges.len() - 1 {
         assert!(ranges[i].1 < ranges[i + 1].0);
         assert!(ranges[i].0 != ranges[i + 1].0);
@@ -109,7 +103,6 @@ pub fn part_1(filename: String) -> u32 {
         }
     }
 
-    println!("Selected counter {}", selected_counter);
     selected_counter as u32
 }
 
@@ -117,15 +110,15 @@ pub fn part_1(filename: String) -> u32 {
 mod tests {
     use super::*;
 
-    //#[test]
-    //fn test_part_1_example() {
-    //    assert_eq!(part_1("input/day5/example.txt".to_string()), 3);
-    //}
+    #[test]
+    fn test_part_1_example() {
+        assert_eq!(part_1("input/day5/example.txt".to_string()), 3);
+    }
 
-    //#[test]
-    //fn test_part_1_input() {
-    //    assert_eq!(part_1("input/day5/input.txt".to_string()), 679);
-    //}
+    #[test]
+    fn test_part_1_input() {
+        assert_eq!(part_1("input/day5/input.txt".to_string()), 679);
+    }
 
     #[test]
     fn test_part_2_example() {
@@ -134,6 +127,6 @@ mod tests {
 
     #[test]
     fn test_part_2_input() {
-        assert_eq!(part_2("input/day5/input.txt".to_string()), 679);
+        assert_eq!(part_2("input/day5/input.txt".to_string()), 358155203664116);
     }
 }
